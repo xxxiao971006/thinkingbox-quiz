@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Online Quiz</title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+
+<body>
+  <main class="quiz" role="main" aria-live="polite">
+    <div id="startScreen" class="start-screen">
+      <h1>🎬 Let's do some Film Quiz! 🎬</h1>
+      <button id="startBtn">Start Quiz</button>
+    </div>
+
+    <header class="hidden" id="quizHeader">
+      <div class="progress">
+        <div class="progress-bar" id="progressBar"></div>
+      </div>
+      <div class="timer" id="timer">15s</div>
+    </header>
+
+    <div id="quizContent" class="quiz-content hidden">
+      <span id="counter"></span>
+      <h1 id="question">Loading question…</h1>
+
+      <img id="questionImage" class="question-image hidden" alt="Question related image" />
+
+      <ul id="options"></ul>
+
+      <div class="feedback" id="feedback"></div>
+
+      <div class="actions">
+        <button id="nextBtn" class="hidden">Next</button>
+      </div>
+
+    </div>
+
+
+    <section id="result" class="hidden">
+      <h2>Your Score</h2>
+      <p id="score"></p>
+      <button onclick="location.reload()">Restart Quiz</button>
+    </section>
+
+    <div id="celebration" class="celebration hidden" aria-hidden="true"></div>
+
+  </main>
+
+  <!-- JS -->
+  <script src="js/script.js"></script>
+</body>
+
+</html>
