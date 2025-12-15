@@ -78,10 +78,16 @@ function decodeHTML(html) {
 function startTimer() {
     const q = questions[currentIndex];
 
-    timerEl.textContent = `${timeLeft}s`;
+    timerEl.textContent = `⏱ ${timeLeft}s`;
     timer = setInterval(() => {
         timeLeft--;
-        timerEl.textContent = `${timeLeft}s`;
+        timerEl.textContent = `⏱ ${timeLeft}s`;
+
+        timerEl.style.animation = "tick 0.3s ease";
+    setTimeout(() => {
+        timerEl.style.animation = "";
+    }, 300);
+    
         if (timeLeft <= 5) {
             timerEl.classList.add("warning");
         } else {
@@ -109,7 +115,7 @@ function nextQuestion() {
 
 function showQuestion() {
     quizContent.classList.remove("quiz-content");
-    void quizContent.offsetWidth; // force reflow
+    void quizContent.offsetWidth;
     quizContent.classList.add("quiz-content");
 
     clearInterval(timer);
@@ -165,7 +171,6 @@ function selectAnswer(button, answer) {
     nextBtn.onclick = nextQuestion;
 }
 
-
 function showResults() {    
     feedbackEl.textContent = "";
     counterEl.textContent = "";
@@ -183,7 +188,6 @@ function showResults() {
 
     celebrate(); // 🎉 
 }
-
 
 function celebrate() {
     celebrationEl.classList.remove("hidden");

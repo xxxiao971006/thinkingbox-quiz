@@ -73,7 +73,17 @@ body {
     }
 }
 
-/* starter screen style */
+@keyframes progressShine {
+    from { transform: translateX(-100%); }
+    to { transform: translateX(100%); }
+}
+
+@keyframes tick {
+    50% {
+        transform: scale(1.1);
+    }
+}
+
 .start-screen {
     width: 100%;
     max-width: 640px;
@@ -126,27 +136,59 @@ header {
 
 .progress {
     flex: 1;
-    height: 8px;
+    height: 12px;
     background: #e5e7eb;
     border-radius: 999px;
     overflow: hidden;
+    position: relative;
 }
 
 .progress-bar {
     height: 100%;
     width: 0;
-    background: var(--primary);
+    background: linear-gradient(
+        90deg,
+        #6366f1,
+        #4f46e5
+    );
+    border-radius: 999px;
     transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+}
+
+.progress-bar::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255,255,255,0.35),
+        transparent
+    );
+    animation: progressShine 1.5s infinite;
 }
 
 .timer {
-    font-weight: 600;
-    min-width: 3ch;   /* reserves space for “15s” */
-    text-align: right;
-    flex-shrink: 0;   /* prevents flex from shrinking it */
+    font-weight: 700;
+    width: 6ch;
+    text-align: center;
+    flex-shrink: 0;
+    font-variant-numeric: tabular-nums; 
+
+    padding: 0.25rem 0.6rem;
+    border-radius: 999px;
+    background: #eef2ff;
+    color: #4338ca;
+
+    transition: 
+        background 0.2s ease,
+        color 0.2s ease,
+        transform 0.15s ease;
 }
 
 .timer.warning {
+    background: #fee2e2;
     color: #dc2626;
     animation: pulse 0.8s infinite;
 }
@@ -197,13 +239,13 @@ ul {
 }
 
 .option.disabled-hover {
-    pointer-events: none;   /* stop hover/click */
+    pointer-events: none; 
     transform: none !important;
     box-shadow: none !important;
 }
 
 .feedback {
-    white-space: pre-line; /* allows \n to create a new line */
+    white-space: pre-line;
     margin-top: 0.5rem;
     font-weight: 500;
 }
@@ -214,7 +256,6 @@ ul {
     margin-top: 1rem;
 }
 
-/* Next button */
 #nextBtn {
     padding: 0.6rem 1.25rem;
     border-radius: 999px;
@@ -232,7 +273,6 @@ ul {
         background 0.2s ease;
 }
 
-/* Hover */
 #nextBtn:hover {
     transform: translateY(-1px);
     box-shadow: 0 12px 28px rgba(79, 70, 229, 0.35);
@@ -262,7 +302,6 @@ ul {
     background: #4338ca;
 }
 
-/* 🎉 Celebration animation */
 .celebration {
     position: fixed;
     inset: 0;
@@ -276,7 +315,7 @@ ul {
     animation: float 3s ease-in forwards;
 }
 
-.celebration span:not(:empty) { /* emojis */
+.celebration span:not(:empty) {
     font-size: 2rem;
 }
 
