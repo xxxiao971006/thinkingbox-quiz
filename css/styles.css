@@ -172,7 +172,7 @@ header {
 
 .timer {
     font-weight: 700;
-    width: 6ch;
+    width: 8ch;
     text-align: center;
     flex-shrink: 0;
     font-variant-numeric: tabular-nums; 
